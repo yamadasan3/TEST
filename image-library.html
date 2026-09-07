@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>画像ライブラリ</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 30px;
+            background: #222;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .image-library {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .image-item {
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .image-name {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>画像ライブラリ</h1>
+
+<div class="image-library">
+
+    <div class="image-item">
+        <img src="pcs02-003.png" alt="カード">
+        <div class="image-name">pcs02-003</div>
+    </div>
+
+    <div class="image-item">
+        <img src="card02.png" alt="カード2">
+        <div class="image-name">card02</div>
+    </div>
+
+    <div class="image-item">
+        <img src="card03.png" alt="カード3">
+        <div class="image-name">card03</div>
+    </div>
+
+</div>
+
+</body>
+</html>
