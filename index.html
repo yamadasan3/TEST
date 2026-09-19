@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>TESTです</title>
-    <!-- 👇 ここから追加：フレーム（枠線）と背景色の設定 -->
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
         model-viewer {
             width: 80%;
             height: 500px;
-            /* 枠線の設定：太さ(2px)、種類(実線)、色(グレー) */
-            border: 2px solid #ccc;
-            /* 角を少し丸くする場合（不要なら消してもOK） */
+            /* ドラッグ＆ドロップエリアと分かりやすいように破線の枠線にする */
+            border: 3px dashed #3498db;
             border-radius: 12px;
-            /* 読み込み前や背景が透明なときの背景色（薄い灰色など） */
             background-color: #f9f9f9;
+            display: block;
+            margin: 20px auto;
         }
     </style>
-    <!-- 👆 ここまで -->
 </head>
 <body>
 
@@ -35,16 +38,47 @@
 <input type="text" placeholder="ここに入力">
 <button> ボタンです </button>
 
-<hr> <!-- ここから下を3Dモデル表示用に追加 -->
+<hr>
 
-<h2>3Dモデル表示エリア</h2>
+<h2>3Dモデル表示エリア（ここにGLBファイルをドラッグ＆ドロップ！）</h2>
 
-<!-- ① model-viewerを動かすためのプログラム（おまじない） -->
+<!-- ① model-viewerを動かすためのプログラム -->
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
-<!-- ② 動作確認済みのタグ（style="..." の部分はCSSにまとめたのでスッキリしています） -->
-<model-viewer src="Meshy_AI_Smiling_Blue_Slime_0919143826_texture.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1"> 
+<!-- ② id="viewer" を追加して、プログラムから操作できるようにする -->
+<model-viewer id="viewer" src="Meshy_AI_Smiling_Blue_Slime_0919143826_texture.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1"> 
 </model-viewer>
+
+<!-- ③ ドラッグ＆ドロップでモデルを切り替えるためのJavaScript -->
+<script>
+    const viewer = document.getElementById('viewer');
+
+    // ファイルが上に乗せられたときのブラウザの標準動作（ファイルを開いてしまう挙動）をキャンセル
+    viewer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+    });
+
+    // ファイルがドロップされたときの処理
+    viewer.addEventListener('drop', (e) => {
+        e.preventDefault();
+
+        // ドロップされたファイルを取得
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files.log || files[0]; // 念のためファイルオブジェクトを取得
+
+            // .glb または .gltf ファイルかどうかをチェック
+            if (file.name.endsWith('.glb') || file.name.endsWith('.gltf')) {
+                // ローカルファイル一時URLを生成して model-viewer にセット
+                const blobUrl = URL.createObjectURL(file);
+                viewer.src = blobUrl;
+                console.log('モデルを切り替えました:', file.name);
+            } else {
+                alert('GLBまたはGLTFファイルを選択してください。');
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
