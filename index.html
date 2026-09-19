@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>TESTです</title>
-
+    <!-- 👇 ここから追加：フレーム（枠線）と背景色の設定 -->
+    <style>
+        model-viewer {
+            width: 80%;
+            height: 500px;
+            /* 枠線の設定：太さ(2px)、種類(実線)、色(グレー) */
+            border: 2px solid #ccc;
+            /* 角を少し丸くする場合（不要なら消してもOK） */
+            border-radius: 12px;
+            /* 読み込み前や背景が透明なときの背景色（薄い灰色など） */
+            background-color: #f9f9f9;
+        }
+    </style>
+    <!-- 👆 ここまで -->
 </head>
 <body>
 
@@ -19,7 +32,7 @@
 <br>
 <a href="image-library.html">画像一覧へ</a>
 <br>
-<input aa="ここに入力">
+<input type="text" placeholder="ここに入力">
 <button> ボタンです </button>
 
 <hr> <!-- ここから下を3Dモデル表示用に追加 -->
@@ -29,9 +42,9 @@
 <!-- ① model-viewerを動かすためのプログラム（おまじない） -->
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
-<!-- ② エディターからコピーしてもらったあなたの3D表示タグ -->
-<model-viewer src="Meshy_AI_Smiling_Blue_Slime_0919143826_texture.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1"style="width: 80%; height:500px;"> </model-viewer>
-
+<!-- ② 動作確認済みのタグ（style="..." の部分はCSSにまとめたのでスッキリしています） -->
+<model-viewer src="Meshy_AI_Smiling_Blue_Slime_0919143826_texture.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1"> 
+</model-viewer>
 
 </body>
 </html>
