@@ -12,13 +12,33 @@
 <br>
 <a href="page2.html">ページ2へ</a>
 <br>
-<a href="card-effect-lab.html">エフェクトへ</a>
-    <br>
+<a href="page1.html">エフェクトへ</a>
+<br>
 <a href="カード・スナイパー_WEB/index.html">ゲームモードへ</a>
 <br>
 <a href="image-library.html">画像一覧へ</a>
-    <br>
-    <input aa = "ここに入力">
-    <button>  ボタンです　</button>
+<br>
+<input aa="ここに入力">
+<button> ボタンです </button>
+
+<hr> <!-- ここから下を3Dモデル表示用に追加 -->
+
+<h2>3Dモデル表示エリア</h2>
+
+<!-- ① model-viewerを動かすためのプログラム（おまじない） -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+<!-- ② エディターからコピーしてもらったあなたの3D表示タグ -->
+<model-viewer 
+    src="Meshy_AI_Enchanted_Oasis_Sorce_0919131810_texture.glb" 
+    ar 
+    ar-modes="webxr scene-viewer quick-look" 
+    camera-controls 
+    tone-mapping="neutral" 
+    poster="poster.webp" 
+    shadow-intensity="1"
+    style="width: 100%; height: 400px; background-color: #f9f9f9;">
+</model-viewer>
+
 </body>
 </html>
